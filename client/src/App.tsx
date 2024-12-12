@@ -1,10 +1,10 @@
 import React from 'react';
-import TodoList from './components/TodoList';
+import FilmList from './components/FilmList';
 
 const App: React.FC = () => {
   return (
     <div>
-      <TodoList />
+      <FilmList />
     </div>
   );
 };

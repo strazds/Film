@@ -1,12 +1,12 @@
 import express from "express";
-import Todo from "../models/Todo";
+import Film from "../models/Film";
 
 const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const todos = await Todo.find();
-    res.json(todos);
+    const films = await Film.find();
+    res.json(films);
   } catch (error) {
     if (error instanceof Error) {
       res.status(500).json({ message: error.message });
@@ -17,13 +17,13 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const newTodo = new Todo({
+  const newFilm = new Film({
     text: req.body.text,
   });
 
   try {
-    await newTodo.save();
-    res.status(201).json(newTodo);
+    await newFilm.save();
+    res.status(201).json(newFilm);
   } catch (error) {
     if (error instanceof Error) {
       res.status(400).json({ message: error.message });
