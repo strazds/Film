@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import './filmList.css';
 
 interface Film {
   _id: string;
   text: string;
   completed: boolean;
+}
+
+interface FilmItemProps {
+  text: string; // Define text as a string
 }
 
 const FilmList: React.FC = () => {
@@ -44,6 +49,24 @@ const FilmList: React.FC = () => {
     }
   };
 
+  const FilmItem: React.FC<FilmItemProps> = ({text}) => {
+    return (
+      <div className="film-item">
+        <div className="film-icons">
+          <div>▲</div>
+          <div>□</div>
+          <div>○</div>
+        </div>
+        {/* <h3>{title}</h3> */}
+        <p>{text}</p>
+        <div className="film-meta">
+          <span>Heute</span>
+          <span>23 min</span>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div>
       <h1>Film List</h1>
@@ -54,8 +77,8 @@ const FilmList: React.FC = () => {
       />
       <button onClick={addFilm}>Add Film</button>
       <ul>
-        {films.map((film) => (
-          <li key={film._id}>{film.text}</li>
+        {films.map((film, index) => (
+          <FilmItem key={index} {...film} />
         ))}
       </ul>
     </div>

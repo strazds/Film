@@ -1,0 +1,23 @@
+.film-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.film-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.film-icons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.film-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8em;
+    color: #888;
+}
