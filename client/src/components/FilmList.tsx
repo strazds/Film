@@ -53,15 +53,9 @@ const FilmList: React.FC = () => {
   const FilmItem: React.FC<Film> = ({title, poster, description}) => {
     return (
       <div className="film-item">
-        <div className="film-icons">
-          <div>▲</div>
-          <div>□</div>
-          <div>○</div>
-        </div>
-        {/* <h3>{title}</h3> */}
-        <p>{title}</p>
+        <div>{poster}</div>
         <div className="film-meta">
-          <span>{poster}</span>
+          <span>{title}</span>
           <span>{description}</span>
         </div>
       </div>
