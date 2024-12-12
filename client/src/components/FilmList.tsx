@@ -53,10 +53,12 @@ const FilmList: React.FC = () => {
   const FilmItem: React.FC<Film> = ({title, poster, description}) => {
     return (
       <div className="film-item">
-        <div>{poster}</div>
         <div className="film-meta">
-          <span>{title}</span>
-          <span>{description}</span>
+          <span className="poster"><img src={"http://localhost:5000/images/" + poster} height="auto" width="133px" /></span>
+          <span>
+            <div className="title"><h2 title={title}>{title}</h2></div>
+            <div className="description">{description}</div>
+          </span>
         </div>
       </div>
     );

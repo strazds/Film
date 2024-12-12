@@ -19,7 +19,7 @@ mongoose
 
 app.use("/api/films", filmRoutes);
 
-app.use("/thumbs", express.static(path.join(__dirname, "assets", "thumbs")));
+app.use("/images", express.static(path.join(__dirname, "assets", "thumbs")));
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

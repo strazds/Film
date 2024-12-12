@@ -17,7 +17,26 @@
 
 .film-meta {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     font-size: 0.8em;
     color: #888;
 }
+
+.film-meta .poster {
+    margin-right: 10px;
+}
+
+.film-meta .title h2 {
+    margin-top: 0;
+    margin-bottom: 7px;
+
+    max-width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* .film-meta .title {
+    display: inline-block;
+    width: 23px;
+} */
