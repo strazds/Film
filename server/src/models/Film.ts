@@ -1,13 +1,15 @@
 import mongoose, { Schema, Document } from "mongoose";
 
 export interface IFilm extends Document {
-  text: string;
-  completed: boolean;
+  title: string;
+  poster: string;
+  description: string;
 }
 
 const FilmSchema: Schema = new Schema({
-  text: { type: String, required: true },
-  completed: { type: Boolean, default: false },
+  title: { type: String, required: true },
+  poster: { type: String, required: true },
+  description: { type: String, required: true },
 });
 
 export default mongoose.model<IFilm>("Film", FilmSchema);

@@ -18,7 +18,9 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   const newFilm = new Film({
-    text: req.body.text,
+    title: req.body.title,
+    poster: req.body.poster,
+    description: req.body.description,
   });
 
   try {

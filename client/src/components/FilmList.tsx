@@ -3,17 +3,16 @@ import './filmList.css';
 
 interface Film {
   _id: string;
-  text: string;
-  completed: boolean;
-}
-
-interface FilmItemProps {
-  text: string; // Define text as a string
+  title: string;
+  poster: string;
+  description: string;
 }
 
 const FilmList: React.FC = () => {
   const [films, setFilms] = useState<Film[]>([]);
-  const [newFilm, setNewFilm] = useState('');
+  const [newDescription, setNewDescription] = useState('');
+  const [newTitle, setNewTitle] = useState('');
+  const [newPoster, setNewPoster] = useState('');
 
   useEffect(() => {
     fetchFilms();
@@ -37,19 +36,21 @@ const FilmList: React.FC = () => {
       const response = await fetch('http://localhost:5000/api/films', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: newFilm }),
+        body: JSON.stringify({ description: newDescription, poster: newPoster, title: newTitle }),
       });
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      setNewFilm('');
+      setNewDescription('');
+      setNewPoster('');
+      setNewTitle('');
       fetchFilms();
     } catch (error) {
       console.error('Error adding film:', error);
     }
   };
 
-  const FilmItem: React.FC<FilmItemProps> = ({text}) => {
+  const FilmItem: React.FC<Film> = ({title, poster, description}) => {
     return (
       <div className="film-item">
         <div className="film-icons">
@@ -58,10 +59,10 @@ const FilmList: React.FC = () => {
           <div>○</div>
         </div>
         {/* <h3>{title}</h3> */}
-        <p>{text}</p>
+        <p>{title}</p>
         <div className="film-meta">
-          <span>Heute</span>
-          <span>23 min</span>
+          <span>{poster}</span>
+          <span>{description}</span>
         </div>
       </div>
     );
@@ -70,11 +71,30 @@ const FilmList: React.FC = () => {
   return (
     <div>
       <h1>Film List</h1>
-      <input
-        type="text"
-        value={newFilm}
-        onChange={(e) => setNewFilm(e.target.value)}
-      />
+      <div>
+        <label htmlFor="descriptionInput">Description: </label>
+        <input
+          type="text"
+          value={newDescription}
+          onChange={(e) => setNewDescription(e.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="titleInput">Title: </label>
+        <input
+          type="text"
+          value={newTitle}
+          onChange={(e) => setNewTitle(e.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="posterInput">Poster: </label>
+        <input
+          type="text"
+          value={newPoster}
+          onChange={(e) => setNewPoster(e.target.value)}
+        />
+      </div>
       <button onClick={addFilm}>Add Film</button>
       <ul>
         {films.map((film, index) => (
