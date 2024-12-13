@@ -6,8 +6,6 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   try {
     const films = await Film.find();
-    // console.log(films);
-
     res.json(films);
   } catch (error) {
     if (error instanceof Error) {

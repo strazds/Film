@@ -5,7 +5,11 @@ interface Film {
   _id: string;
   title: string;
   poster: string;
+  appetizer: string;
   description: string;
+  year: string;
+  director: string;
+  stars: number;
 }
 
 const FilmList: React.FC = () => {
@@ -13,6 +17,10 @@ const FilmList: React.FC = () => {
   const [newDescription, setNewDescription] = useState('');
   const [newTitle, setNewTitle] = useState('');
   const [newPoster, setNewPoster] = useState('');
+  const [newAppetizer, setNewAppetizer] = useState('');
+  const [newYear, setNewYear] = useState('');
+  const [newDirector, setNewDirector] = useState('');
+  const [newStars, setNewStars] = useState('');
 
   useEffect(() => {
     fetchFilms();
@@ -66,32 +74,74 @@ const FilmList: React.FC = () => {
 
   return (
     <div>
-      <h1>Film List</h1>
-      <div>
-        <label htmlFor="descriptionInput">Description: </label>
-        <input
-          type="text"
-          value={newDescription}
-          onChange={(e) => setNewDescription(e.target.value)}
-        />
+      <div className="film-form">
+        <h1>Film List</h1>
+        <div className="form-group">
+          <label htmlFor="titleInput">Title: </label>
+          <input
+            id="titleInput"
+            type="text"
+            value={newTitle}
+            onChange={(e) => setNewTitle(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="appetizerInput">Appetizer: </label>
+          <textarea
+            id="appetizerInput"
+            rows={2}
+            value={newAppetizer}
+            onChange={(e) => setNewAppetizer(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="descriptionInput">Description: </label>
+          <textarea
+            id="descriptionInput"
+            rows={5}
+            value={newDescription}
+            onChange={(e) => setNewDescription(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="directorInput">Director: </label>
+          <input
+            id="directorInput"
+            type="text"
+            value={newDirector}
+            onChange={(e) => setNewDirector(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="yearInput">Year: </label>
+          <input
+            id="yearInput"
+            type="number"
+            value={newYear}
+            onChange={(e) => setNewYear(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="posterInput">Poster: </label>
+          <input
+            id="posterInput"
+            type="text"
+            value={newPoster}
+            onChange={(e) => setNewPoster(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="StarsInput">Stars: </label>
+          <input
+            id="starsInput"
+            type="number"
+            value={newStars}
+            onChange={(e) => setNewStars(e.target.value)}
+          />
+        </div>
+        <button onClick={addFilm}>Add Film</button>
       </div>
-      <div>
-        <label htmlFor="titleInput">Title: </label>
-        <input
-          type="text"
-          value={newTitle}
-          onChange={(e) => setNewTitle(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="posterInput">Poster: </label>
-        <input
-          type="text"
-          value={newPoster}
-          onChange={(e) => setNewPoster(e.target.value)}
-        />
-      </div>
-      <button onClick={addFilm}>Add Film</button>
+
       <ul>
         {films.map((film, index) => (
           <FilmItem key={index} {...film} />
