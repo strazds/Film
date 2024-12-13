@@ -1,0 +1,29 @@
+[
+  {
+    "title": "Weihnachten in der Schustergasse",
+    "poster": "weihnachten.png",
+    "appetizer": "Kurz vor Weihnachten kommt die 11-jährige Stine ganz allein in der Cobbler Street an und sucht Unterschlupf bei Shoemaker Andersen...",
+    "description": "Kurz vor Weihnachten kommt die 11-jährige Stine ganz allein in der Cobbler Street an und sucht Unterschlupf bei Shoemaker Andersen, einem mürrischen alten Mann, der einfach nur in Ruhe gelassen werden will.",
+    "director": "Mikal Hovland",
+    "year": "2024",
+    "stars": "5"
+  },
+  {
+    "title": "Die Schule der magischen Tiere 3",
+    "poster": "die_schule.png",
+    "appetizer": "Drohender Bankrott, geplante Abholzung des lokalen Waldes, Missgeschick im Naturkundemuseum und Vorbereitung auf einen großen Auftritt...",
+    "description": "Drohender Bankrott, geplante Abholzung des lokalen Waldes, Missgeschick im Naturkundemuseum und Vorbereitung auf einen großen Auftritt - auch diesmal steht die magische Gemeinschaft vor turbulenten Ereignissen und großen Entscheidungen.",
+    "director": "Sven Unterwaldt Jr.",
+    "year": "2024",
+    "stars": "4"
+  },
+  {
+    "title": "Wicked: Teil 1",
+    "poster": "wicked.png",
+    "appetizer": "Die Geschichte, wie eine grünhäutige Frau, die vom Zauberer von Oz umrahmt wird, zur bösen Hexe des Westens wird...",
+    "description": "Die Geschichte, wie eine grünhäutige Frau, die vom Zauberer von Oz umrahmt wird, zur bösen Hexe des Westens wird. Der erste einer zweiteiligen Spielfilmadaption des Broadway-Musicals.",
+    "director": "Jon M. Chu",
+    "year": "2024",
+    "stars": "0"
+  }
+]
