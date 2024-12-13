@@ -1,6 +1,7 @@
 [
   {
     "title": "Weihnachten in der Schustergasse",
+    "thumb": "weihnachten.png",
     "poster": "weihnachten.png",
     "appetizer": "Kurz vor Weihnachten kommt die 11-jährige Stine ganz allein in der Cobbler Street an und sucht Unterschlupf bei Shoemaker Andersen...",
     "description": "Kurz vor Weihnachten kommt die 11-jährige Stine ganz allein in der Cobbler Street an und sucht Unterschlupf bei Shoemaker Andersen, einem mürrischen alten Mann, der einfach nur in Ruhe gelassen werden will.",
@@ -10,6 +11,7 @@
   },
   {
     "title": "Die Schule der magischen Tiere 3",
+    "thumb": "die_schule.png",
     "poster": "die_schule.png",
     "appetizer": "Drohender Bankrott, geplante Abholzung des lokalen Waldes, Missgeschick im Naturkundemuseum und Vorbereitung auf einen großen Auftritt...",
     "description": "Drohender Bankrott, geplante Abholzung des lokalen Waldes, Missgeschick im Naturkundemuseum und Vorbereitung auf einen großen Auftritt - auch diesmal steht die magische Gemeinschaft vor turbulenten Ereignissen und großen Entscheidungen.",
@@ -19,6 +21,7 @@
   },
   {
     "title": "Wicked: Teil 1",
+    "thumb": "wicked.png",
     "poster": "wicked.png",
     "appetizer": "Die Geschichte, wie eine grünhäutige Frau, die vom Zauberer von Oz umrahmt wird, zur bösen Hexe des Westens wird...",
     "description": "Die Geschichte, wie eine grünhäutige Frau, die vom Zauberer von Oz umrahmt wird, zur bösen Hexe des Westens wird. Der erste einer zweiteiligen Spielfilmadaption des Broadway-Musicals.",

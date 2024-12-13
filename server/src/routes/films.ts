@@ -25,6 +25,7 @@ router.post("/", async (req, res) => {
     for (const filmData of films) {
       const newFilm = new Film({
         title: filmData.title,
+        thumb: filmData.thumb,
         poster: filmData.poster,
         description: filmData.description,
         appetizer: filmData.appetizer,

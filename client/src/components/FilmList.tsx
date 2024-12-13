@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import filmsData from "./films.json";
+import config from "../config.json";
 import './filmList.css';
 
 interface Film {
   _id: string;
   title: string;
+  thumb: string;
   poster: string;
   appetizer: string;
   description: string;
@@ -22,7 +24,7 @@ const FilmList: React.FC = () => {
 
   const fetchFilms = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/films');
+      const response = await fetch(`${config.serverUrl}/api/films`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -35,7 +37,7 @@ const FilmList: React.FC = () => {
 
   const addFilm = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/films', {
+      const response = await fetch(`${config.serverUrl}/api/films`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(filmsData)
@@ -49,11 +51,11 @@ const FilmList: React.FC = () => {
     }
   };
 
-  const FilmItem: React.FC<Film> = ({title, poster, description}) => {
+  const FilmItem: React.FC<Film> = ({title, thumb, description}) => {
     return (
       <div className="film-item">
         <div className="film-meta">
-          <span className="poster"><img src={"http://localhost:5000/images/" + poster} height="auto" width="133px" /></span>
+          <span className="thumb"><img src={`${config.serverUrl}/images/${thumb}`} height="auto" width="133px" /></span>
           <span>
             <div className="title"><h2 title={title}>{title}</h2></div>
             <div className="description">{description}</div>

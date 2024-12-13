@@ -2,6 +2,7 @@ import mongoose, { Schema, Document } from "mongoose";
 
 export interface IFilm extends Document {
   title: string;
+  thumb: string;
   poster: string;
   description: string;
   appetizer: string;
@@ -12,6 +13,7 @@ export interface IFilm extends Document {
 
 const FilmSchema: Schema = new Schema({
   title: { type: String, required: true },
+  thumb: { type: String, required: true },
   poster: { type: String, required: true },
   description: { type: String, required: true },
   appetizer: { type: String, required: true },
