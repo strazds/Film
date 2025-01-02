@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import filmsData from "./films.json";
-import config from "../config.json";
+import config from "../../config.json";
 import './FilmList.css';
 
 interface Film {
@@ -51,17 +52,21 @@ const FilmList: React.FC = () => {
     }
   };
 
-  const FilmItem: React.FC<Film> = ({title, thumb, description}) => {
+  const FilmItem: React.FC<Film> = ({_id, title, thumb, description}) => {
     return (
-      <div className="film-item">
-        <div className="film-meta">
-          <span className="thumb"><img src={`${config.serverUrl}/images/${thumb}`} height="auto" width="133px" /></span>
-          <span>
-            <div className="title"><h2 title={title}>{title}</h2></div>
-            <div className="description">{description}</div>
-          </span>
-        </div>
-      </div>
+      // <div className="film-item">
+      //   <div className="film-meta">
+      //     <span className="thumb"><img src={`${config.serverUrl}/images/${thumb}`} height="auto" width="133px" /></span>
+      //     <span>
+      //       <div className="title"><h2 title={title}>{title}</h2></div>
+      //       <div className="description">{description}</div>
+      //     </span>
+      //   </div>
+      // </div>
+
+      <li key={_id}>
+        <Link to={`/filme/${_id}`}>{title}</Link>
+      </li>
     );
   }
 

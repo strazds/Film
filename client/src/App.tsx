@@ -1,10 +1,17 @@
 import React from 'react';
-import FilmList from './components/FilmList.tsx';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import FilmList from './components/FilmList/FilmList.tsx';
 
 const App: React.FC = () => {
   return (
     <div>
-      <FilmList />
+      <Router>
+        <Routes>
+          <Route path="/" element={<FilmList />} />
+          <Route path="/filme/:id" element={<FilmList />} /> {/* Dynamische Route mit ID */}
+        </Routes>
+      </Router>
+      {/* <FilmList /> */}
     </div>
   );
 };
