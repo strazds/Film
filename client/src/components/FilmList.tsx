@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import filmsData from "./films.json";
 import config from "../config.json";
-import './filmList.css';
+import './FilmList.css';
 
 interface Film {
   _id: string;
