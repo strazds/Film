@@ -1,56 +1,70 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-// import { Link } from 'react-router-dom';
-// import filmsData from "./films.json";
-// import config from "../../config.json";
-import './FilmDetail.css';
+import config from "../../config.json";
 
 interface Film {
-  _id: string;
-  title: string;
-  thumb: string;
-  poster: string;
-  appetizer: string;
-  description: string;
-  year: number;
-  director: string;
-  stars: number;
+    _id: string;
+    title: string;
+    thumb: string;
+    poster: string;
+    appetizer: string;
+    description: string;
+    year: number;
+    director: string;
+    stars: number;
 }
 
-const FilmDetail: React.FC = () => {
+function FilmDetail() {
   const { id } = useParams<{ id: string }>();
   const [film, setFilm] = useState<Film | null>(null);
-//   const [film, setFilm] = useState(null);
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    const abortController = new AbortController();
+    const signal = abortController.signal;
     const fetchFilm = async () => {
-      const response = await fetch(`/api/filme/${id}`);
-      if (!response.ok) {
-        // Fehlerbehandlung, z.B. Weiterleitung zu einer Fehlerseite
-        console.error("Fehler beim Laden des Films");
-        return;
+      try {
+        const response = await fetch(`${config.serverUrl}/api/films/${id}`, { signal });
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data: Film = await response.json();
+        
+        setFilm(data);
+      } catch (err: any) {
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
       }
-      const data = await response.json();
-      setFilm(data);
     };
 
     fetchFilm();
-  }, [id]); // id als Dependency für useEffect
+
+  }, [id]);
+
+  if (isLoading) {
+    return <div>Film wird geladen...</div>;
+  }
+
+    if (error) {
+        return <div>Fehler beim Laden des Films: {error}</div>;
+    }
 
   if (!film) {
-    return <div>Film wird geladen...</div>; // Ladeanzeige
+    return <div>Film nicht gefunden</div>;
   }
 
   return (
     <div>
       <h1>{film.title}</h1>
-      <img src={film.poster} alt={film.title} />
+      {film.poster && <img src={`${config.serverUrl}/posters/${film.poster}`} height="auto" width="300px" alt={film.title}  />}
       <p>{film.description}</p>
       <p>Erscheinungsjahr: {film.year}</p>
       <p>Bewertung: {film.stars}</p>
     </div>
   );
-
-};
+}
 
 export default FilmDetail;

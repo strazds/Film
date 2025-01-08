@@ -16,6 +16,26 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  try {
+    const film = await Film.findById(req.params.id);
+
+    if (!film) {
+      res.status(404).json({ message: "Film nicht gefunden" });
+      return;
+    }
+    res.json(film);
+  } catch (error) {
+    if (error instanceof Error) {
+      res.status(500).json({ message: error.message });
+    } else {
+      console.error(String(error));
+      console.error(error);
+      res.status(500).json({ message: "Serverfehler" });
+    }
+  }
+});
+
 router.post("/", async (req, res) => {
   try {
     const films = req.body;

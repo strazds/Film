@@ -7,7 +7,14 @@ import path from "path";
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+const corsOptions = {
+  origin: "http://localhost:5173",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
+  optionsSuccessStatus: 204,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 mongoose
@@ -20,6 +27,7 @@ mongoose
 app.use("/api/films", filmRoutes);
 
 app.use("/images", express.static(path.join(__dirname, "assets", "thumbs")));
+app.use("/posters", express.static(path.join(__dirname, "assets", "poster")));
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

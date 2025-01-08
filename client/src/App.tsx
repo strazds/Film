@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import FilmList from './components/FilmList/FilmList.tsx';
+import FilmDetail from './components/FilmDetail/FilmDetail.tsx';
 
 const App: React.FC = () => {
   return (
@@ -8,10 +9,9 @@ const App: React.FC = () => {
       <Router>
         <Routes>
           <Route path="/" element={<FilmList />} />
-          <Route path="/filme/:id" element={<FilmList />} /> {/* Dynamische Route mit ID */}
+          <Route path="/api/films/:id" element={<FilmDetail />} />
         </Routes>
       </Router>
-      {/* <FilmList /> */}
     </div>
   );
 };
