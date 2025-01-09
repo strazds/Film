@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import usersData from "./users.json";
 import config from "../../config.json";
 import './UserList.css';
@@ -51,8 +50,8 @@ const UserList: React.FC = () => {
       <div className="user-item">
         <div className="user-meta">
           <span>
-            <Link to={`/api/users/${_id}`}>{username}</Link>
-            <div className="password">{password}</div>
+            <div className="username">{username}</div>
+            <div className="password">***********</div>
           </span>
         </div>
       </div>
