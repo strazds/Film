@@ -10,6 +10,7 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<FilmList />} />
           <Route path="/api/films/:id" element={<FilmDetail />} />
+          <Route path="/api/users/" element={<FilmDetail />} />
         </Routes>
       </Router>
     </div>
