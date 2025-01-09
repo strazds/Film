@@ -54,8 +54,6 @@ router.post("/", async (req, res) => {
         stars: parseInt(filmData.stars, 10),
       });
 
-      console.log({ newFilm });
-
       const savedFilm = await newFilm.save();
       savedFilms.push(savedFilm);
     }
