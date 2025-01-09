@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import config from "../../config.json";
+import Popup from "../Popup/Popup.tsx"; // Importiere die Popup-Komponente
 
 interface Film {
     _id: string;
@@ -19,6 +20,10 @@ function FilmDetail() {
   const [film, setFilm] = useState<Film | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const openPopup = () => setIsPopupOpen(true);
+  const closePopup = () => setIsPopupOpen(false);
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -41,20 +46,34 @@ function FilmDetail() {
     };
 
     fetchFilm();
-
   }, [id]);
 
   if (isLoading) {
     return <div>Film wird geladen...</div>;
   }
 
-    if (error) {
-        return <div>Fehler beim Laden des Films: {error}</div>;
-    }
+  if (error) {
+    return <div>Fehler beim Laden des Films: {error}</div>;
+  }
 
   if (!film) {
     return <div>Film nicht gefunden</div>;
   }
+
+  const showRatingDialog = async () => {
+    // try {
+    //   const response = await fetch(`${config.serverUrl}/api/films`, {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify(filmsData)
+    //   });
+    //   if (!response.ok) {
+    //     throw new Error(`HTTP error! status: ${response.status}`);
+    //   }
+    // } catch (error) {
+    //   console.error('Error adding film:', error);
+    // }
+  };
 
   return (
     <div>
@@ -63,6 +82,12 @@ function FilmDetail() {
       <p>{film.description}</p>
       <p>Erscheinungsjahr: {film.year}</p>
       <p>Bewertung: {film.stars}</p>
+      <button onClick={openPopup}>Rate</button>
+      <Popup isOpen={isPopupOpen} onClose={closePopup}>
+        <h2>Popup-Inhalt</h2>
+        <p>Dies ist der Inhalt des Popup-Fensters.</p>
+        {/* Hier kannst du beliebige Inhalte einfügen */}
+      </Popup>
     </div>
   );
 }
