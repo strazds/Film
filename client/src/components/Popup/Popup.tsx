@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Popup.css'; // Optionale CSS-Datei
-import StarRating from "../StarRating/StarRating.tsx";
 
 interface PopupProps {
   isOpen: boolean;
@@ -9,7 +8,6 @@ interface PopupProps {
 }
 
 const Popup: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
-  const [currentRating, setCurrentRating] = useState(3);
 
   if (!isOpen) {
     return null; // Popup nicht anzeigen, wenn isOpen false ist
@@ -22,12 +20,7 @@ const Popup: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
           Schließen
         </button>
         <div className="popup-content">
-          {/* {children} */}
-          <div className="App">
-            <h1>Filmbewertung</h1>
-            <StarRating rating={currentRating} onChange={setCurrentRating} interactive/>
-            <p>Aktuelle Bewertung: {currentRating}</p>
-         </div>
+          {children}
         </div>
       </div>
     </div>

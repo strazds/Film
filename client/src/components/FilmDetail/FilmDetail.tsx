@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import config from "../../config.json";
 import Popup from "../Popup/Popup.tsx"; // Importiere die Popup-Komponente
 import StarRating from "../StarRating/StarRating.tsx";
+import './FilmDetail.css';
 
 interface Film {
     _id: string;
@@ -22,6 +23,40 @@ function FilmDetail() {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [currentRating, setCurrentRating] = useState(0);
+  const [ratingSent, setRatingSent] = useState(false); // Neuer Zustand
+
+  const handleRatingSubmit = async () => {
+    if (currentRating === 0) {
+        alert("Bitte gib eine Bewertung ab."); // Oder eine bessere Fehleranzeige
+        return;
+    }
+
+    try {
+        const response = await fetch(`${config.serverUrl}/api/films/${id}/rating`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ rating: currentRating, userId: "677fdf78180cc8d5f1f6d8cd" }),
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json(); // Versuche, Fehler vom Server zu parsen
+            throw new Error(errorData?.message || `HTTP error! status: ${response.status}`);
+        }
+
+        console.log('Bewertung erfolgreich gesendet');
+        setRatingSent(true); // Setze den Zustand, um den Erfolg anzuzeigen
+        closePopup(); // Schließe das Popup nach erfolgreicher Bewertung
+        // Optional: Film neu laden, um die aktualisierte Bewertung anzuzeigen
+        // fetchFilm();
+    } catch (error: any) {
+        console.error('Fehler beim Senden der Bewertung:', error);
+        alert(`Fehler beim Senden der Bewertung: ${error.message}`); // Bessere Fehleranzeige
+    }
+};
+
 
   const openPopup = () => setIsPopupOpen(true);
   const closePopup = () => setIsPopupOpen(false);
@@ -61,21 +96,6 @@ function FilmDetail() {
     return <div>Film nicht gefunden</div>;
   }
 
-  const showRatingDialog = async () => {
-    // try {
-    //   const response = await fetch(`${config.serverUrl}/api/films`, {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify(filmsData)
-    //   });
-    //   if (!response.ok) {
-    //     throw new Error(`HTTP error! status: ${response.status}`);
-    //   }
-    // } catch (error) {
-    //   console.error('Error adding film:', error);
-    // }
-  };
-
   return (
     <div>
       <h1>{film.title}</h1>
@@ -85,9 +105,13 @@ function FilmDetail() {
       <p>Bewertung: {film.stars}</p>
       <button onClick={openPopup}>Rate</button>
       <Popup isOpen={isPopupOpen} onClose={closePopup}>
-        <h2>Popup-Inhalt</h2>
-        <p>Dies ist der Inhalt des Popup-Fensters.</p>
-        {/* Hier kannst du beliebige Inhalte einfügen */}
+        <div className="App">
+            <h1>Filmbewertung</h1>
+            <StarRating rating={currentRating} onChange={setCurrentRating} interactive/>
+            <p>Aktuelle Bewertung: {currentRating}</p>
+            {ratingSent && <p style={{ color: 'green' }}>Bewertung erfolgreich gesendet!</p>} {/* Erfolgsmeldung */}
+            <button onClick={handleRatingSubmit} disabled={ratingSent}>Bewertung senden</button> {/* Button zum Senden */}
+         </div>
       </Popup>
     </div>
   );
