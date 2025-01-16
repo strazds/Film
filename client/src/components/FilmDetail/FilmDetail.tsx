@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import config from "../../config.json";
 import Popup from "../Popup/Popup.tsx"; // Importiere die Popup-Komponente
+import StarRating from "../StarRating/StarRating.tsx";
 
 interface Film {
     _id: string;
