@@ -38,17 +38,17 @@ function FilmDetail() {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ rating: currentRating, userId: "677fdf78180cc8d5f1f6d8cd" }),
+            body: JSON.stringify({ rating: currentRating, userId: config.users.bob }),
         });
 
         if (!response.ok) {
-            const errorData = await response.json(); // Versuche, Fehler vom Server zu parsen
+            const errorData = await response.json();
             throw new Error(errorData?.message || `HTTP error! status: ${response.status}`);
         }
 
         console.log('Bewertung erfolgreich gesendet');
-        setRatingSent(true); // Setze den Zustand, um den Erfolg anzuzeigen
-        closePopup(); // Schließe das Popup nach erfolgreicher Bewertung
+        setRatingSent(true);
+        closePopup();
         // Optional: Film neu laden, um die aktualisierte Bewertung anzuzeigen
         // fetchFilm();
     } catch (error: any) {

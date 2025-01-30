@@ -1,3 +1,7 @@
 {
-  "serverUrl": "http://localhost:5000"
+  "serverUrl": "http://localhost:5000",
+  "users": {
+    "alice": "677fdf78180cc8d5f1f6d8cd",
+    "bob": "677fdf78180cc8d5f1f6d8cf"
+  }
 }
