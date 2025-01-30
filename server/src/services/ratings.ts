@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import Rating from "../models/Rating";
 import Film from "../models/Film";
 import User from "../models/User";
@@ -24,5 +25,31 @@ async function addRating({ req, res }: { req: any; res: any }) {
     await newRating.save();
   }
 
+  const averageRatingsPerFilm = await getAverageRatingsPerFilm({ Rating, filmId });
+  console.log({ averageRatingsPerFilm });
+
   res.status(200).json({ message: "Bewertung erfolgreich gespeichert" });
+}
+
+async function getAverageRatingsPerFilm({ Rating, filmId }: { Rating: any; filmId: any }) {
+  try {
+    const pipeline = [
+      {
+        $match: { film: mongoose.Types.ObjectId.createFromHexString(filmId) },
+      },
+      {
+        $group: {
+          _id: null,
+          averageRating: { $avg: "$rating" },
+          count: { $sum: 1 },
+        },
+      },
+    ];
+
+    const result = await Rating.aggregate(pipeline);
+
+    return result;
+  } finally {
+    // if error occurs...
+  }
 }
