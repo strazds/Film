@@ -1,5 +1,5 @@
 import React from 'react';
-import './Popup.css'; // Optionale CSS-Datei
+import './Popup.css';
 
 interface PopupProps {
   isOpen: boolean;
@@ -10,7 +10,7 @@ interface PopupProps {
 const Popup: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
 
   if (!isOpen) {
-    return null; // Popup nicht anzeigen, wenn isOpen false ist
+    return null;
   }
 
   return (

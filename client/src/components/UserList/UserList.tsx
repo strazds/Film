@@ -45,7 +45,7 @@ const UserList: React.FC = () => {
     }
   };
 
-  const UserItem: React.FC<User> = ({_id, username, password}) => {
+  const UserItem: React.FC<User> = ({username}) => {
     return (
       <div className="user-item">
         <div className="user-meta">

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import config from "../../config.json";
-import Popup from "../Popup/Popup.tsx"; // Importiere die Popup-Komponente
+import Popup from "../Popup/Popup.tsx";
 import StarRating from "../StarRating/StarRating.tsx";
 import RatingViewer from "../RatingViewer/RatingViewer.tsx";
 import './FilmDetail.css';
@@ -25,11 +25,11 @@ function FilmDetail() {
   const [isLoading, setIsLoading] = useState(true);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [currentRating, setCurrentRating] = useState(0);
-  const [ratingSent, setRatingSent] = useState(false); // Neuer Zustand
+  const [ratingSent, setRatingSent] = useState(false);
 
   const handleRatingSubmit = async () => {
     if (currentRating === 0) {
-        alert("Bitte gib eine Bewertung ab."); // Oder eine bessere Fehleranzeige
+        alert("Bitte gib eine Bewertung ab.");
         return;
     }
 
@@ -50,11 +50,9 @@ function FilmDetail() {
         console.log('Bewertung erfolgreich gesendet');
         setRatingSent(true);
         closePopup();
-        // Optional: Film neu laden, um die aktualisierte Bewertung anzuzeigen
-        // fetchFilm();
     } catch (error: any) {
         console.error('Fehler beim Senden der Bewertung:', error);
-        alert(`Fehler beim Senden der Bewertung: ${error.message}`); // Bessere Fehleranzeige
+        alert(`Fehler beim Senden der Bewertung: ${error.message}`);
     }
 };
 
@@ -103,7 +101,6 @@ function FilmDetail() {
       {film.poster && <img src={`${config.serverUrl}/posters/${film.poster}`} height="auto" width="300px" alt={film.title}  />}
       <p>{film.description}</p>
       <p>Erscheinungsjahr: {film.year}</p>
-      {/* <p>Bewertung: {film.stars}</p> */}
       <RatingViewer totalRating={film.stars} />
       <button onClick={openPopup}>Rate</button>
       <Popup isOpen={isPopupOpen} onClose={closePopup}>
@@ -111,8 +108,8 @@ function FilmDetail() {
             <h1>Filmbewertung</h1>
             <StarRating rating={currentRating} onChange={setCurrentRating} interactive/>
             <p>Aktuelle Bewertung: {currentRating}</p>
-            {ratingSent && <p style={{ color: 'green' }}>Bewertung erfolgreich gesendet!</p>} {/* Erfolgsmeldung */}
-            <button onClick={handleRatingSubmit} disabled={ratingSent}>Bewertung senden</button> {/* Button zum Senden */}
+            {ratingSent && <p style={{ color: 'green' }}>Bewertung erfolgreich gesendet!</p>}
+            <button onClick={handleRatingSubmit} disabled={ratingSent}>Bewertung senden</button>
          </div>
       </Popup>
     </div>

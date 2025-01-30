@@ -1,12 +1,11 @@
 import express from "express";
-import User from "../models/User";
+import users from "../services/users";
 
 const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const users = await User.find();
-    res.json(users);
+    await users.getAll({ req, res });
   } catch (error) {
     if (error instanceof Error) {
       res.status(500).json({ message: error.message });
@@ -18,13 +17,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const user = await User.findById(req.params.id);
-
-    if (!user) {
-      res.status(404).json({ message: "User nicht gefunden" });
-      return;
-    }
-    res.json(user);
+    await users.getSingle({ req, res });
   } catch (error) {
     if (error instanceof Error) {
       res.status(500).json({ message: error.message });
@@ -38,21 +31,7 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const users = req.body;
-
-    const savedUsers = [];
-
-    for (const userData of users) {
-      const newUser = new User({
-        username: userData.username,
-        password: userData.password,
-      });
-
-      const savedUser = await newUser.save();
-      savedUsers.push(savedUser);
-    }
-
-    res.status(201).json(savedUsers);
+    await users.create({ req, res });
   } catch (error) {
     if (error instanceof Error) {
       res.status(400).json({ message: error.message });
