@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import config from "../../config.json";
 import Popup from "../Popup/Popup.tsx"; // Importiere die Popup-Komponente
 import StarRating from "../StarRating/StarRating.tsx";
+import RatingViewer from "../RatingViewer/RatingViewer.tsx";
 import './FilmDetail.css';
 
 interface Film {
@@ -102,7 +103,8 @@ function FilmDetail() {
       {film.poster && <img src={`${config.serverUrl}/posters/${film.poster}`} height="auto" width="300px" alt={film.title}  />}
       <p>{film.description}</p>
       <p>Erscheinungsjahr: {film.year}</p>
-      <p>Bewertung: {film.stars}</p>
+      {/* <p>Bewertung: {film.stars}</p> */}
+      <RatingViewer totalRating={film.stars} />
       <button onClick={openPopup}>Rate</button>
       <Popup isOpen={isPopupOpen} onClose={closePopup}>
         <div className="App">
