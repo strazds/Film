@@ -26,7 +26,9 @@ async function addRating({ req, res }: { req: any; res: any }) {
   }
 
   const averageRatingsPerFilm = await getAverageRatingsPerFilm({ Rating, filmId });
-  console.log({ averageRatingsPerFilm });
+  const averageRating = averageRatingsPerFilm[0].averageRating;
+  film.stars = averageRating;
+  film.save();
 
   res.status(200).json({ message: "Bewertung erfolgreich gespeichert" });
 }
