@@ -63,7 +63,7 @@ const FilmList: React.FC = () => {
           </span>
           <span>
             <Link to={`/api/films/${_id}`}>{title}</Link>
-            <div className="description">{description}</div>
+            {/* <div className="description">{description}</div> */}
           </span>
         </div>
       </div>
@@ -73,7 +73,7 @@ const FilmList: React.FC = () => {
   return (
     <div>
       <button onClick={addFilm}>Add Film</button>
-      <ul>
+      <ul className='film-list'>
         {films.map((film, index) => (
           <FilmItem key={index} {...film} />
         ))}

@@ -1,18 +1,18 @@
 .film-list {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .film-item {
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
     padding: 10px;
     margin-bottom: 10px;
 }
 
 .film-meta {
-    display: flex;
+    /* display: flex;
     font-size: 0.8em;
-    color: #888;
+    color: #888; */
 }
 
 .film-meta .poster {
