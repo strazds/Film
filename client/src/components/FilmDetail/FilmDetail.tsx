@@ -33,7 +33,7 @@ function FilmDetail() {
     }
 
     try {
-        const response = await fetch(`${config.serverUrl}/api/films/${id}/rating`, {
+        const response = await fetch(`${config.serverUrl}/api/ratings/${id}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

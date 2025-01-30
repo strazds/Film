@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import filmRoutes from "./routes/films";
 import userRoutes from "./routes/users";
+import ratingRoutes from "./routes/ratings";
 import path from "path";
 
 const app = express();
@@ -27,6 +28,7 @@ mongoose
 
 app.use("/api/films", filmRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/ratings", ratingRoutes);
 
 app.use("/images", express.static(path.join(__dirname, "assets", "thumbs")));
 app.use("/posters", express.static(path.join(__dirname, "assets", "poster")));
