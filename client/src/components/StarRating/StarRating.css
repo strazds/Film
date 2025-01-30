@@ -1,24 +1,17 @@
 .star-rating {
     display: inline-flex;
-    /* Sterne nebeneinander anordnen */
 }
 
 .star {
     font-size: 2em;
-    /* Größe der Sterne */
     color: #ddd;
-    /* Farbe der leeren Sterne (Hellgrau) */
     cursor: default;
-    /* Standard-Cursor */
     user-select: none;
-    /* Textauswahl verhindern */
     transition: color 0.2s;
-    /* Sanfter Farbwechsel */
 }
 
 .star.filled {
     color: #2979FF;
-    /* Farbe der gefüllten Sterne (Blau, wie im Bild) */
 }
 
 .star.interactive {

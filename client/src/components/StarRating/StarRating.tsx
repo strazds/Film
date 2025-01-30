@@ -1,10 +1,10 @@
 import React from 'react';
-import './StarRating.css'; // Importiere die CSS-Datei
+import './StarRating.css';
 
 interface StarRatingProps {
-  rating: number; // Aktuelle Bewertung (z.B. 3 für 3 Sterne)
-  maxRating?: number; // Maximale Anzahl an Sternen (Standard: 5)
-  onChange?: (rating: number) => void; // Callback-Funktion für Änderungen
+  rating: number;
+  maxRating?: number;
+  onChange?: (rating: number) => void;
   interactive?: boolean;
 }
 

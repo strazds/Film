@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import filmsData from "./films.json";
+import RatingViewer from "../RatingViewer/RatingViewer.tsx";
 import config from "../../config.json";
 import './FilmList.css';
 
@@ -57,6 +58,9 @@ const FilmList: React.FC = () => {
       <div className="film-item">
         <div className="film-meta">
           <span className="thumb"><img src={`${config.serverUrl}/images/${thumb}`} height="auto" width="133px" /></span>
+          <span>
+            <RatingViewer totalRating={100} />
+          </span>
           <span>
             <Link to={`/api/films/${_id}`}>{title}</Link>
             <div className="description">{description}</div>
