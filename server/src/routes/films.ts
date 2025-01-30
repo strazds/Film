@@ -1,12 +1,11 @@
 import express from "express";
-import Film from "../models/Film";
+import films from "../services/films";
 
 const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const films = await Film.find();
-    res.json(films);
+    await films.getAll({ req, res });
   } catch (error) {
     if (error instanceof Error) {
       res.status(500).json({ message: error.message });
@@ -18,13 +17,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const film = await Film.findById(req.params.id);
-
-    if (!film) {
-      res.status(404).json({ message: "Film nicht gefunden" });
-      return;
-    }
-    res.json(film);
+    await films.getSingle({ req, res });
   } catch (error) {
     if (error instanceof Error) {
       res.status(500).json({ message: error.message });
@@ -38,27 +31,7 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const films = req.body;
-
-    const savedFilms = [];
-
-    for (const filmData of films) {
-      const newFilm = new Film({
-        title: filmData.title,
-        thumb: filmData.thumb,
-        poster: filmData.poster,
-        description: filmData.description,
-        appetizer: filmData.appetizer,
-        director: filmData.director,
-        year: filmData.year,
-        stars: parseInt(filmData.stars, 10),
-      });
-
-      const savedFilm = await newFilm.save();
-      savedFilms.push(savedFilm);
-    }
-
-    res.status(201).json(savedFilms);
+    await films.create({ req, res });
   } catch (error) {
     if (error instanceof Error) {
       res.status(400).json({ message: error.message });
