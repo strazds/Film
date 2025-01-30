@@ -53,13 +53,13 @@ const FilmList: React.FC = () => {
     }
   };
 
-  const FilmItem: React.FC<Film> = ({_id, title, thumb, description}) => {
+  const FilmItem: React.FC<Film> = ({_id, title, thumb, description, stars}) => {
     return (
       <div className="film-item">
         <div className="film-meta">
           <span className="thumb"><img src={`${config.serverUrl}/images/${thumb}`} height="auto" width="133px" /></span>
           <span>
-            <RatingViewer totalRating={100} />
+            <RatingViewer totalRating={stars} />
           </span>
           <span>
             <Link to={`/api/films/${_id}`}>{title}</Link>
