@@ -5,3 +5,15 @@
 .film-detail h1 {
     text-align: left;
 }
+
+.title {
+    margin: 0 0 5px 0;
+}
+
+.year {
+    margin: 0 0 5px 0;
+}
+
+.description {
+    margin: 0;
+}

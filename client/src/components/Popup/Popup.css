@@ -12,7 +12,7 @@
 }
 
 .popup {
-    background-color: white;
+    background-color: #121212;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -20,13 +20,28 @@
 }
 
 .popup-close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
+    max-width: 50px;
+    background: transparent;
     border: none;
-    background: none;
-    font-size: 1.2em;
+    padding: 0;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    font-size: 2em;
+    color: #888;
+}
+
+.close-icon {
+    position: absolute;
+    display: block;
+    line-height: 1;
+    top: -20px;
+    right: 0px;
+}
+
+.close-button:hover {
+    color: #333;
+    /* Farbe bei Hover ändern */
 }
 
 .popup-content {

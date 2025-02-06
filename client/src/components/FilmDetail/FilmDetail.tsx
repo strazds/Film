@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import config from "../../config.json";
-import Popup from "../Popup/Popup.tsx";
-import StarRating from "../StarRating/StarRating.tsx";
 import RatingViewer from "../RatingViewer/RatingViewer.tsx";
 import './FilmDetail.css';
 
@@ -23,42 +21,6 @@ function FilmDetail() {
   const [film, setFilm] = useState<Film | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [currentRating, setCurrentRating] = useState(0);
-  const [ratingSent, setRatingSent] = useState(false);
-
-  const handleRatingSubmit = async () => {
-    if (currentRating === 0) {
-        alert("Bitte gib eine Bewertung ab.");
-        return;
-    }
-
-    try {
-        const response = await fetch(`${config.serverUrl}/api/ratings/${id}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ rating: currentRating, userId: config.users.bob }),
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData?.message || `HTTP error! status: ${response.status}`);
-        }
-
-        console.log('Bewertung erfolgreich gesendet');
-        setRatingSent(true);
-        closePopup();
-    } catch (error: any) {
-        console.error('Fehler beim Senden der Bewertung:', error);
-        alert(`Fehler beim Senden der Bewertung: ${error.message}`);
-    }
-};
-
-
-  const openPopup = () => setIsPopupOpen(true);
-  const closePopup = () => setIsPopupOpen(false);
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -97,21 +59,11 @@ function FilmDetail() {
 
   return (
     <div className='film-detail'>
-      <h1>{film.title}</h1>
+      <h1 className='title'>{film.title}</h1>
+      <p className='year'>{film.year}</p>
       {film.poster && <img src={`${config.serverUrl}/posters/${film.poster}`} height="auto" width="100%" alt={film.title}  />}
-      <p>{film.description}</p>
-      <p>Erscheinungsjahr: {film.year}</p>
-      <RatingViewer totalRating={film.stars} />
-      <button onClick={openPopup}>Rate</button>
-      <Popup isOpen={isPopupOpen} onClose={closePopup}>
-        <div className="App">
-            <h1>Filmbewertung</h1>
-            <StarRating rating={currentRating} onChange={setCurrentRating} interactive/>
-            <p>Aktuelle Bewertung: {currentRating}</p>
-            {ratingSent && <p style={{ color: 'green' }}>Bewertung erfolgreich gesendet!</p>}
-            <button onClick={handleRatingSubmit} disabled={ratingSent}>Bewertung senden</button>
-         </div>
-      </Popup>
+      <p className='description'>{film.description}</p>
+      <RatingViewer totalRating={film.stars} ratingButtonVisible={true} />
     </div>
   );
 }

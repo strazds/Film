@@ -79,7 +79,7 @@ textarea:focus {
     box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
 
-button {
+.film-list button {
     display: block;
     width: 100%;
     padding: 10px;
@@ -92,7 +92,7 @@ button {
     transition: background-color 0.3s ease;
 }
 
-button:hover {
+.film-list button:hover {
     background-color: #45a049;
 }
 

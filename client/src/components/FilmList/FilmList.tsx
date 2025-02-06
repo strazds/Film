@@ -59,7 +59,7 @@ const FilmList: React.FC = () => {
         <div className="film-meta">
           <Link to={`/api/films/${_id}`}><span className="thumb"><img src={`${config.serverUrl}/images/${thumb}`} height="auto" width="133px" /></span></Link>
           <span>
-            <RatingViewer totalRating={stars} />
+            <RatingViewer totalRating={stars} ratingButtonVisible={false} />
           </span>
           <span>
             <Link to={`/api/films/${_id}`}>{title}</Link>

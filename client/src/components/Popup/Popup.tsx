@@ -17,7 +17,7 @@ const Popup: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
     <div className="popup-overlay">
       <div className="popup">
         <button className="popup-close" onClick={onClose}>
-          Schließen
+          <span className="close-icon">×</span>
         </button>
         <div className="popup-content">
           {children}
