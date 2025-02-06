@@ -96,9 +96,9 @@ function FilmDetail() {
   }
 
   return (
-    <div>
+    <div className='film-detail'>
       <h1>{film.title}</h1>
-      {film.poster && <img src={`${config.serverUrl}/posters/${film.poster}`} height="auto" width="300px" alt={film.title}  />}
+      {film.poster && <img src={`${config.serverUrl}/posters/${film.poster}`} height="auto" width="100%" alt={film.title}  />}
       <p>{film.description}</p>
       <p>Erscheinungsjahr: {film.year}</p>
       <RatingViewer totalRating={film.stars} />

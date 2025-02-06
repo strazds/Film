@@ -15,6 +15,13 @@ const RatingViewer: React.FC<RatingViewerProps> = ({ totalRating }) => {
         ★
       </span>
       <span className="value">{totalRating}</span>
+
+      <span
+        className={`star`}
+      >
+        ★
+      </span>
+      <span className="value">Bewerten</span>
     </div>
   ;
   return <div className="rating-viewer">{ratingView}</div>;
