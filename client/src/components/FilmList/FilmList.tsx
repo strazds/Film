@@ -57,13 +57,12 @@ const FilmList: React.FC = () => {
     return (
       <div className="film-item">
         <div className="film-meta">
-          <span className="thumb"><img src={`${config.serverUrl}/images/${thumb}`} height="auto" width="133px" /></span>
+          <Link to={`/api/films/${_id}`}><span className="thumb"><img src={`${config.serverUrl}/images/${thumb}`} height="auto" width="133px" /></span></Link>
           <span>
             <RatingViewer totalRating={stars} />
           </span>
           <span>
             <Link to={`/api/films/${_id}`}>{title}</Link>
-            {/* <div className="description">{description}</div> */}
           </span>
         </div>
       </div>
@@ -72,7 +71,7 @@ const FilmList: React.FC = () => {
 
   return (
     <div>
-      <button onClick={addFilm}>Add Film</button>
+      <button className='button-add-films' onClick={addFilm}>Add Films</button>
       <ul className='film-list'>
         {films.map((film, index) => (
           <FilmItem key={index} {...film} />

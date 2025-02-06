@@ -8,13 +8,13 @@ interface RatingViewerProps {
 
 const RatingViewer: React.FC<RatingViewerProps> = ({ totalRating }) => {
   const ratingView = 
-    <div>
+    <div className='rating'>
       <span
         className={`star filled`}
       >
         ★
       </span>
-      <span>{totalRating}</span>
+      <span className="value">{totalRating}</span>
     </div>
   ;
   return <div className="rating-viewer">{ratingView}</div>;

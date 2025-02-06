@@ -1,3 +1,31 @@
+.rating-viewer {
+    /* display: flex;
+    align-items: center; */
+    /* Vertically center the content */
+    /* Other styling as needed */
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    /* Vertically center the content */
+    /* Other styling as needed */
+}
+
+.star {
+    /* Styling for the star (e.g., color, size) */
+    /* color: gold; */
+    /* font-size: 20px; */
+    margin-right: 5px;
+    /* Add some spacing between the star and value */
+}
+
 .star.filled {
     color: #2979FF;
+}
+
+
+.value {
+    /* Styling for the value (e.g., font-size) */
+    /* font-size: 18px; */
 }
